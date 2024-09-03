@@ -11,7 +11,7 @@
 		/>
 		<style>
 			.question {
-				font-size: 1.25rem;
+				font-size: 1.25rem; /* 질문 크기 확대 */
 				font-weight: bold;
 				margin-bottom: 20px;
 				text-align: center;
@@ -20,19 +20,11 @@
 				margin-bottom: 20px;
 				resize: none;
 			}
-			.answer-input {
+			.answer-buttons {
 				display: grid;
 				gap: 10px;
 				margin-bottom: 20px;
 			}
-			.answer-input > input {
-				margin-bottom: 5px;
-			}
-
-			.question-input {
-				margin-bottom: 30px;
-			}
-
 			.bottom-buttons {
 				text-align: center;
 			}
@@ -45,30 +37,20 @@
 	<body>
 		<div class="wrapper">
 			<!-- 상단 제목 -->
-			<div class="header">자기소개 퀴즈 입력</div>
+			<div class="header">자기소개 퀴즈</div>
 
 			<!-- 프로그레스바 -->
 			<progress class="progress is-info" value="20" max="100">20%</progress>
 
 			<!-- 질문 -->
-			<div class="question-input">
-				<input
-					class="input is-rounded"
-					type="text"
-					placeholder="문제를 작성해주세요."
-				/>
-			</div>
+			<div class="question">당신의 MBTI는 무엇인가요?</div>
 
 			<!-- 보기 버튼 (2*3 배열) -->
-			<div class="answer-input">
-				<input
-					class="input is-rounded correct-answer"
-					type="text"
-					placeholder="정답"
-				/>
-				<input class="input is-rounded" type="text" placeholder="보기2" />
-				<input class="input is-rounded" type="text" placeholder="보기3" />
-				<input class="input is-rounded" type="text" placeholder="보기4" />
+			<div class="answer-buttons">
+				<button class="button" onclick="selectAnswer(this)">보기 1</button>
+				<button class="button" onclick="selectAnswer(this)">보기 2</button>
+				<button class="button" onclick="selectAnswer(this)">보기 3</button>
+				<button class="button" onclick="selectAnswer(this)">보기 4</button>
 			</div>
 
 			<!-- 다음 버튼 -->
@@ -76,5 +58,18 @@
 				<button class="button is-primary">다음</button>
 			</div>
 		</div>
+
+		<script>
+			function selectAnswer(button) {
+				// 모든 버튼에서 is-selected 클래스 제거
+				const buttons = document.querySelectorAll('.answer-buttons .button');
+				buttons.forEach((btn) =>
+					btn.classList.remove('is-selected', 'is-info')
+				);
+
+				// 클릭한 버튼에 is-selected 및 is-info 클래스 추가
+				button.classList.add('is-selected', 'is-info');
+			}
+		</script>
 	</body>
 </html>
